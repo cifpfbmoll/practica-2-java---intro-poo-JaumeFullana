@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class ACT1P1 {
@@ -33,41 +32,68 @@ public class ACT1P1 {
 
     public static void hacerMedias() {
         System.out.println("Bienvenido al modulo de hacer medias y contar ceros.");
-        Double[] listaNumerosPositivos=new Double[0];
-        Double[] listaNumerosNegativos=new Double[0];
+        Double numerosPositivos=0.0;
+        Double numerosNegativos=0.0;
+        int cantidadPositivos=0;
+        int cantidadNegativos=0;
         int ceros=0;
         for (int i=0;i<5;i++){
             System.out.println("Escribe un numero entero, positivo o negativo.");
             Double numero=sc.nextDouble();
             if (numero>=0){
-                listaNumerosPositivos=Arrays.copyOf(listaNumerosPositivos, listaNumerosPositivos.length+1);
-                listaNumerosPositivos[listaNumerosPositivos.length-1]=numero;
+                cantidadPositivos++;
+                numerosPositivos+=numero;
                 if (numero==0){
-                    ceros+=1;
+                    ceros++;
                 }
             }
             else {
-                listaNumerosNegativos=Arrays.copyOf(listaNumerosNegativos, listaNumerosNegativos.length+1);
-                listaNumerosNegativos[listaNumerosNegativos.length-1]=numero;
+                cantidadNegativos++;
+                numerosNegativos+=numero;
             }
         }
-        Double sumaPositivos=0.0;
-        for (int i=0;i<listaNumerosPositivos.length;i++){
-            sumaPositivos+=listaNumerosPositivos[i];
-        }
-        Double sumaNegativos=0.0;
-        for (int i=0;i<listaNumerosNegativos.length;i++){
-            sumaNegativos+=listaNumerosNegativos[i];
-        }
-        Double mediaPositivos=sumaPositivos/listaNumerosPositivos.length;
-        Double mediaNegativos=sumaNegativos/listaNumerosNegativos.length;
+        Double mediaPositivos=numerosPositivos/cantidadPositivos;
+        Double mediaNegativos=numerosNegativos/cantidadNegativos;
         System.out.println("La media de numeros positivos es: "+mediaPositivos);
         System.out.println("La media de numeros negativos es: "+mediaNegativos);
         System.out.println("La cantidad de ceros introducidos es: "+ceros);
     }
+
+    public static int contarCaracteres(String texto) {
+        String textoSinEspacios=texto.replace(" ", "");
+        return textoSinEspacios.length();
+    }
+
+    public static void girarTexto(String texto) {
+        char[] listaCaracteres=new char[texto.length()];
+        texto.getChars(0, texto.length(), listaCaracteres, 0);
+        for (int i=texto.length()-1;i>=0;i--){
+            System.out.print(listaCaracteres[i]);
+        }
+        return
+    }
+
+    public static void quitarEspacios(String texto) {
+        System.out.println(texto.replace(" ", ""));
+    }
+
+    public static void concatenarTexto(String texto1, String texto2) {
+        String textConcatenado=texto1.concat(texto2);
+        System.out.println(textConcatenado);
+    }
+
+    public static void cambiarVocales(String texto, String vocal) {
+        texto=texto.replace("a", vocal);
+        texto=texto.replace("e", vocal);
+        texto=texto.replace("i", vocal);
+        texto=texto.replace("o", vocal);
+        texto=texto.replace("u", vocal);
+        System.out.println(texto);
+    }
     public static void main(String[] args) {
         System.out.println("Bienvenido! escribe un numero del 1 al 9 para elegir uno de los diferentes modulos del programa. Escribe 0 para slir de este.");
         int numero=sc.nextInt();
+        sc.nextLine();
         while (numero!=0){
             switch (numero) {
                 case 1:
@@ -83,23 +109,38 @@ public class ACT1P1 {
                 break;
 
                 case 4:
-                ;
+                System.out.println("Escribe una palabra o frase.");
+                String texto4=sc.nextLine();
+                int numeroCaracteres=contarCaracteres(texto4);
+                System.out.println("El texto, sin contar espacios, contiene "+numeroCaracteres+" caracteres.");
                 break;
 
                 case 5:
-                ;
+                System.out.println("Escribe una palabra o frase.");
+                String texto5=sc.nextLine();
+                girarTexto(texto5);
                 break;
 
                 case 6:
-                ;
+                System.out.println("Escribe una palabra o frase.");
+                String texto6=sc.nextLine();
+                quitarEspacios(texto6);;
                 break;
 
                 case 7:
-                ;
+                System.out.println("Escribe una palabra o frase.");
+                String texto7a=sc.nextLine();
+                System.out.println("Escribe otra palabra o frase.");
+                String texto7b=sc.nextLine();
+                concatenarTexto(texto7a, texto7b);
                 break;
 
                 case 8:
-                ;
+                System.out.println("Escribe una palabra o frase.");
+                String texto8=sc.nextLine();
+                System.out.println("Escribe una vocal.");
+                String vocal=sc.nextLine();
+                cambiarVocales(texto8, vocal);
                 break;
 
                 case 9:
