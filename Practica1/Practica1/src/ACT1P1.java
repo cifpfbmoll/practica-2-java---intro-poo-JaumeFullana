@@ -64,22 +64,22 @@ public class ACT1P1 {
         return textoSinEspacios.length();
     }
 
-    public static void girarTexto(String texto) {
-        char[] listaCaracteres=new char[texto.length()];
-        texto.getChars(0, texto.length(), listaCaracteres, 0);
+    public static String girarTexto(String texto) {
+        String textoAlReves="";
         for (int i=texto.length()-1;i>=0;i--){
-            System.out.print(listaCaracteres[i]);
+            textoAlReves+=texto.charAt(i);
         }
-        return
+        return textoAlReves;
     }
 
-    public static void quitarEspacios(String texto) {
-        System.out.println(texto.replace(" ", ""));
+    public static String quitarEspacios(String texto) {
+        String textoSinEspacios=texto.replace(" ", "");
+        return textoSinEspacios;
     }
 
-    public static void concatenarTexto(String texto1, String texto2) {
-        String textConcatenado=texto1.concat(texto2);
-        System.out.println(textConcatenado);
+    public static String concatenarTexto(String texto1, String texto2) {
+        String textoConcatenado=texto1.concat(texto2);
+        return textoConcatenado;
     }
 
     public static void cambiarVocales(String texto, String vocal) {
@@ -89,6 +89,12 @@ public class ACT1P1 {
         texto=texto.replace("o", vocal);
         texto=texto.replace("u", vocal);
         System.out.println(texto);
+    }
+
+    public static void codigoCaracteres(String texto) {
+        for (int i=0;i<texto.length();i++){
+            System.out.println("El codigo ASCII del caracter "+texto.charAt(i)+" es "+(int) texto.charAt(i));
+        }
     }
     public static void main(String[] args) {
         System.out.println("Bienvenido! escribe un numero del 1 al 9 para elegir uno de los diferentes modulos del programa. Escribe 0 para slir de este.");
@@ -118,13 +124,15 @@ public class ACT1P1 {
                 case 5:
                 System.out.println("Escribe una palabra o frase.");
                 String texto5=sc.nextLine();
-                girarTexto(texto5);
+                String textoGirado=girarTexto(texto5);
+                System.out.println("El texto girado quedaria asi: "+textoGirado);
                 break;
 
                 case 6:
                 System.out.println("Escribe una palabra o frase.");
                 String texto6=sc.nextLine();
-                quitarEspacios(texto6);;
+                String textoSinEspacios=quitarEspacios(texto6);
+                System.out.println("El texto sin espacios quedaria asi: "+textoSinEspacios);
                 break;
 
                 case 7:
@@ -132,7 +140,8 @@ public class ACT1P1 {
                 String texto7a=sc.nextLine();
                 System.out.println("Escribe otra palabra o frase.");
                 String texto7b=sc.nextLine();
-                concatenarTexto(texto7a, texto7b);
+                String textoConcatenado=concatenarTexto(texto7a, texto7b);
+                System.out.println("Los dos textos concatenados quedan asi: "+textoConcatenado);
                 break;
 
                 case 8:
@@ -144,7 +153,9 @@ public class ACT1P1 {
                 break;
 
                 case 9:
-                ;
+                System.out.println("Escribe una palabra o frase.");
+                String texto9=sc.nextLine();
+                codigoCaracteres(texto9);
                 break;
 
                 case 0:
@@ -158,6 +169,7 @@ public class ACT1P1 {
             sc=new Scanner(System.in);
             System.out.println("Elige una nueva funcion(1-9) o sal del programa(0):");
             numero=sc.nextInt();
+            sc.nextLine();
         }
     }
 }
