@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class ACT1P1 {
+public class ACT1P1Prova {
 
     static Scanner sc= new Scanner(System.in);
 
