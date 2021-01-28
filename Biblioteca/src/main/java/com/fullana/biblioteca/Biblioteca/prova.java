@@ -8,7 +8,7 @@ package com.fullana.biblioteca.Biblioteca;
 import java.util.Scanner;
 /**
  *
- * @author mmful
+ * @author Jaume
  */
 public class prova {
     
