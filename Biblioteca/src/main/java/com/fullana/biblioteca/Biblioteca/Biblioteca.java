@@ -16,13 +16,13 @@ public class Biblioteca {
     public static Scanner sc=new Scanner (System.in);
     private String nombreBiblioteca;
     private ArrayList <Libro> listaLibros=new ArrayList <Libro>();
-    private  ArrayList <Persona> listaPersonal=new ArrayList <Persona>();
+    private ArrayList <Persona> listaPersonal=new ArrayList <Persona>();
 
     public Biblioteca() {
     }
 
    
-    public Biblioteca(String nombreBiblioteca, ArrayList<Libro> listaLibros, ArrayList<Persona> listaPersonal) {
+    public Biblioteca(String nombreBiblioteca) {
         this.setNombreBiblioteca(nombreBiblioteca);
     }
 
@@ -31,10 +31,16 @@ public class Biblioteca {
     }
 
     public void setNombreBiblioteca(String nombreBiblioteca) {
+        while((Character.getType(nombreBiblioteca.charAt(0)))!=1){
+            System.out.println("El nombre de la biblioteca debe empezar en mayuscula");
+            System.out.println("Escribe el nombre de la biblioteca:");
+            nombreBiblioteca=sc.nextLine();
+        }
         this.nombreBiblioteca = nombreBiblioteca;
     }
 
     public ArrayList<Libro> getListaLibros() {
+        
         return listaLibros;
     }
 
