@@ -5,6 +5,7 @@
  */
 package com.fullana.biblioteca.Biblioteca;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 /**
  *
@@ -104,7 +105,7 @@ public class Libro {
         return "Libro{" + "ISBN=" + ISBN + ", titulo=" + titulo + ", autor=" + autor + ", editorial=" + editorial + ", numeroCopias=" + numeroCopias + ", copiasDisponibles=" + copiasDisponibles + '}';
     }
     
-    public static void anadirLibro(){
+    public static void anadirLibro(ArrayList <Libro> listaLibros){
         Libro lbr=new Libro();
         System.out.println("Inserta la ISBN del libro");
         lbr.setISBN(sc.nextLine());
@@ -127,8 +128,46 @@ public class Libro {
         }
         lbr.setCopiasDisponibles(numeroCopiasDisponibles);
         sc.nextLine();
-        Biblioteca.listaLibros.add(lbr);
+        listaLibros.add(lbr);
     }
+    
+    public static void eliminarLibro (ArrayList <Libro> listaLibros){
+        
+        boolean encontrado=false;
+        System.out.println("Escribe la ISBN del libro");
+        String isbn=sc.nextLine();
+        for (int i=0; i<listaLibros.size();i++){
+            
+            if (isbn.equals(listaLibros.get(i).getISBN())){
+                encontrado=true;
+                if( (listaLibros.get(i).getNumeroCopias())!=(listaLibros.get(i).getCopiasDisponibles()) ){
+                    System.out.println("Lo siento, no se puede eliminar un libro reservado");
+                }
+                else{
+                    System.out.println("Procedo a eliminar el libro: "+(listaLibros.get(i).getTitulo()));
+                    listaLibros.remove(i);
+                }
+            }   
+        }
+        if (!encontrado){
+            System.out.println("No hay ningun libro con esa ISBN");
+        }
+        
+    }
+    
+    public static int buscarLibroISBN (ArrayList <Libro> listaLibros){
+        System.out.println("Escribe la ISBN del libro");
+        String isbn=sc.nextLine();
+        int posicion=-1;
+        for (int i=0; i<listaLibros.size();i++){
+            
+            if (isbn.equals(listaLibros.get(i).getISBN())){
+                posicion=listaLibros.lastIndexOf(listaLibros.get(i));
+            }
+        }
+        return posicion;
+    }
+    
     
     
     
