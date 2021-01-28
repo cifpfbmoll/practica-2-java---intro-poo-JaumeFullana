@@ -8,7 +8,7 @@ package com.fullana.biblioteca.Biblioteca;
 import java.util.Scanner;
 /**
  *
- * @author mmful
+ * @author Jaume
  */
 public class Libro {
     
@@ -104,7 +104,7 @@ public class Libro {
         return "Libro{" + "ISBN=" + ISBN + ", titulo=" + titulo + ", autor=" + autor + ", editorial=" + editorial + ", numeroCopias=" + numeroCopias + ", copiasDisponibles=" + copiasDisponibles + '}';
     }
     
-    public static Libro anadirLibro(){
+    public static void anadirLibro(){
         Libro lbr=new Libro();
         System.out.println("Inserta la ISBN del libro");
         lbr.setISBN(sc.nextLine());
@@ -115,12 +115,19 @@ public class Libro {
         System.out.println("Inserta la editorial del libro");
         lbr.setEditorial(sc.nextLine());
         System.out.println("Inserta el numero de copias del libro");
-        lbr.setNumeroCopias(sc.nextInt());
+        int numeroCopias=sc.nextInt();
+        lbr.setNumeroCopias(numeroCopias);
         sc.nextLine();
         System.out.println("Inserta el numero de copias disponibles del libro");
-        lbr.setISBN(sc.nextLine());
+        int numeroCopiasDisponibles=sc.nextInt();
+        while(numeroCopias<numeroCopiasDisponibles){
+            System.out.println("Es imposible que haya disponibles mas copias de las que tenemos");
+            System.out.println("Inserte el numero correcto, porfavor");
+            numeroCopiasDisponibles=sc.nextInt();
+        }
+        lbr.setCopiasDisponibles(numeroCopiasDisponibles);
         sc.nextLine();
-        return lbr;
+        Biblioteca.listaLibros.add(lbr);
     }
     
     
