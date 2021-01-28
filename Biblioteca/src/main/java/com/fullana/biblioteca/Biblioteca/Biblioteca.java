@@ -15,8 +15,8 @@ public class Biblioteca {
     
     public static Scanner sc=new Scanner (System.in);
     private String nombreBiblioteca;
-    public static ArrayList <Libro> listaLibros=new ArrayList <Libro>();
-    public static ArrayList <Persona> listaPersonal=new ArrayList <Persona>();
+    private ArrayList <Libro> listaLibros=new ArrayList <Libro>();
+    private ArrayList <Persona> listaPersonal=new ArrayList <Persona>();
 
     public Biblioteca() {
     }
@@ -49,7 +49,7 @@ public class Biblioteca {
     }
 
     
-    
-    
-    
+
+
+
 }
