@@ -9,14 +9,14 @@ import java.util.ArrayList;
 import java.util.Scanner;
 /**
  *
- * @author mmful
+ * @author Jaume
  */
 public class Biblioteca {
     
     public static Scanner sc=new Scanner (System.in);
     private String nombreBiblioteca;
-    private ArrayList <Libro> listaLibros=new ArrayList <Libro>();
-    private ArrayList <Persona> listaPersonal=new ArrayList <Persona>();
+    public static ArrayList <Libro> listaLibros=new ArrayList <Libro>();
+    public static ArrayList <Persona> listaPersonal=new ArrayList <Persona>();
 
     public Biblioteca() {
     }
