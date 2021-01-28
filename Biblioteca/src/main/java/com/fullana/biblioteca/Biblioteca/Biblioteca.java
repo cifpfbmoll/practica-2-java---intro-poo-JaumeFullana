@@ -33,7 +33,7 @@ public class Biblioteca {
     public void setNombreBiblioteca(String nombreBiblioteca) {
         while((Character.getType(nombreBiblioteca.charAt(0)))!=1){
             System.out.println("El nombre de la biblioteca debe empezar en mayuscula");
-            System.out.println("Escribe el nombre de la biblioteca:");
+            System.out.println("Escribe bien el nombre de la biblioteca:");
             nombreBiblioteca=sc.nextLine();
         }
         this.nombreBiblioteca = nombreBiblioteca;
