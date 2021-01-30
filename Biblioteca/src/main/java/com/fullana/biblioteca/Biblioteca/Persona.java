@@ -6,6 +6,7 @@
 package com.fullana.biblioteca.Biblioteca;
 
 import java.util.Scanner;
+import java.util.ArrayList;
 /**
  *
  * @author Jaume
@@ -86,6 +87,36 @@ public class Persona {
     @Override
     public String toString() {
         return "Persona{" + "sc=" + sc + ", nombre=" + nombre + ", apellido1=" + apellido1 + ", apellido2=" + apellido2 + ", NIF=" + NIF + ", contrasena=" + contrasena + '}';
+    }
+    
+    public static void añadirPersona (ArrayList <Persona> listaPersonal){
+        System.out.println("Escribe el nombre de la persona:"); 
+        String nombre=sc.nextLine();
+        System.out.println("Escribe el primer apellido de la persona");
+        String apellido1=sc.nextLine();
+        System.out.println("Escribe el segundo apellido de la persona");
+        String apellido2=sc.nextLine();
+        System.out.println("Escribe el NIF de la persona");
+        String NIF=sc.nextLine();
+        System.out.println("Escribe la contraseña de usuario de esta persona");
+        String contrasena=sc.nextLine();
+        Persona p1=new Persona(nombre, apellido1, apellido2, NIF, contrasena);
+        listaPersonal.add(p1);
+    }
+    
+    public static void eliminarPersona(ArrayList <Persona> listaPersonal){
+        System.out.println("Escribe el NIF de la persona que quieres eliminar del sistema");
+        String NIF=sc.nextLine();
+        boolean encontrado=false;
+        for (int i=0;i<listaPersonal.size();i++){
+            if (listaPersonal.get(i).getNIF().equals(NIF)){
+                listaPersonal.remove(i);
+                encontrado=true;
+            }
+        }
+        if (!encontrado){
+            System.out.println("No existe ninguna persona con ese NIF en el sistema");
+        }
     }
     
     

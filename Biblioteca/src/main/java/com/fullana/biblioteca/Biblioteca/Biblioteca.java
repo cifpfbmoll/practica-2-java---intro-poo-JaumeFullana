@@ -47,6 +47,22 @@ public class Biblioteca {
     public ArrayList<Persona> getListaPersonal() {
         return listaPersonal;
     }
+    
+    public void mostrarLibros(){
+        
+        for (int i=0;i<listaLibros.size();i++){
+            System.out.println(listaLibros.get(i).toString());
+        }
+    }
+    
+        public void mostrarLibrosDisponibles(){
+        
+        for (int i=0;i<listaLibros.size();i++){
+            if (listaLibros.get(i).getCopiasDisponibles()>0){
+                System.out.println(listaLibros.get(i).toString());
+            }
+        }
+    }
 
     
 

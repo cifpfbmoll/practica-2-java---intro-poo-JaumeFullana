@@ -168,6 +168,20 @@ public class Libro {
         return posicion;
     }
     
+    public static void buscarLibroTitulo(ArrayList <Libro> listaLibros){
+        boolean encontrado=false;
+        System.out.println("Escribe el titulo o una parte del titulo del libro que quieres buscar");
+        String titulo=sc.nextLine();
+        for (int i=0;i<listaLibros.size();i++){
+            if(listaLibros.get(i).getTitulo().contains(titulo)){
+                System.out.println(listaLibros.get(i).toString());
+                encontrado=true;
+            }
+        }
+        if (!encontrado){
+            System.out.println("No hay ningun libro que contenga o tenga el titulo especificado");
+        }
+    }
     
     
     
