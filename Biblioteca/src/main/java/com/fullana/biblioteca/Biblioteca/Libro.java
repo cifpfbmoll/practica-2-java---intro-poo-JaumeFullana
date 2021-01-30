@@ -14,6 +14,7 @@ import java.util.Scanner;
 public class Libro {
     
     public static Scanner sc=new Scanner(System.in);
+    //Atributos de Libro
     private static int contadorLibros;
     private String ISBN;
     private String titulo;
@@ -21,7 +22,7 @@ public class Libro {
     private String editorial;
     private int numeroCopias;
     private int copiasDisponibles;
-
+    //Constructores de Libro(vacio, con todos los atributos y el constructor copia)
     public Libro() {
         contadorLibros++;
     }
@@ -45,7 +46,7 @@ public class Libro {
         this.setNumeroCopias(lbr.getNumeroCopias());
         this.setCopiasDisponibles(lbr.getCopiasDisponibles());
     }
-
+    //Getters y setters
     public String getISBN() {
         return ISBN;
     }
@@ -83,6 +84,7 @@ public class Libro {
     }
 
     public void setNumeroCopias(int numeroCopias) {
+        //Control para asegurarse que almenos añadan 1 copia del libro
         while (numeroCopias<1){
             System.out.println("El numero de copias no puede ser menor que 1!");
             System.out.println("Inserta el numero de copias del libro:");
@@ -99,12 +101,12 @@ public class Libro {
     public void setCopiasDisponibles(int copiasDisponibles) {
         this.copiasDisponibles = copiasDisponibles;
     }
-
+    //modulo para imprimir los valores de un objeto Libro
     @Override
     public String toString() {
         return "Libro{" + "ISBN=" + ISBN + ", titulo=" + titulo + ", autor=" + autor + ", editorial=" + editorial + ", numeroCopias=" + numeroCopias + ", copiasDisponibles=" + copiasDisponibles + '}';
     }
-    
+    //modulo que crea y añade valores a un objeto Libro y lo guarda dentro de una lista que se pasa por parametro
     public static void anadirLibro(ArrayList <Libro> listaLibros){
         Libro lbr=new Libro();
         System.out.println("Inserta la ISBN del libro");
@@ -121,6 +123,7 @@ public class Libro {
         sc.nextLine();
         System.out.println("Inserta el numero de copias disponibles del libro");
         int numeroCopiasDisponibles=sc.nextInt();
+        //Control para que no haya mas copias disponibles de las que tenemos
         while(numeroCopias<numeroCopiasDisponibles){
             System.out.println("Es imposible que haya disponibles mas copias de las que tenemos");
             System.out.println("Inserte el numero correcto, porfavor");
@@ -130,7 +133,9 @@ public class Libro {
         sc.nextLine();
         listaLibros.add(lbr);
     }
-    
+    /*modulo que busca un Libro por su ISBN en la lista listaLibros de la biblioteca,
+     que se pasa por parametro, y si lo encuentra lo elimina de la lista
+    */
     public static void eliminarLibro (ArrayList <Libro> listaLibros){
         
         boolean encontrado=false;
@@ -140,6 +145,7 @@ public class Libro {
             
             if (isbn.equals(listaLibros.get(i).getISBN())){
                 encontrado=true;
+                //Si el Libro tiene alguna copia no disponible(esta reservada) no se puede eliminar
                 if( (listaLibros.get(i).getNumeroCopias())!=(listaLibros.get(i).getCopiasDisponibles()) ){
                     System.out.println("Lo siento, no se puede eliminar un libro reservado");
                 }
@@ -151,10 +157,11 @@ public class Libro {
         }
         if (!encontrado){
             System.out.println("No hay ningun libro con esa ISBN");
-        }
-        
+        }    
     }
-    
+    /*Busca un Libro por su ISBN en la lista que se pasa por parametro i devuelve
+    su posicion en la lista, si no se encuentra en ella devuelve -1
+    */
     public static int buscarLibroISBN (ArrayList <Libro> listaLibros){
         System.out.println("Escribe la ISBN del libro");
         String isbn=sc.nextLine();
@@ -167,7 +174,8 @@ public class Libro {
         }
         return posicion;
     }
-    
+    /* Busca un Libro por su titulo(solo hace falta que la string este en el titulo,
+    no que sea el titulo entero) en una lista pasada por parametro y lo imprime por pantalla */
     public static void buscarLibroTitulo(ArrayList <Libro> listaLibros){
         boolean encontrado=false;
         System.out.println("Escribe el titulo o una parte del titulo del libro que quieres buscar");
@@ -181,11 +189,5 @@ public class Libro {
         if (!encontrado){
             System.out.println("No hay ningun libro que contenga o tenga el titulo especificado");
         }
-    }
-    
-    
-    
-        
-    
-    
+    }   
 }

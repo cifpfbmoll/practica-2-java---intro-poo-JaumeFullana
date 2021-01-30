@@ -12,11 +12,10 @@ import java.util.Scanner;
  */
 public class Main {
     
-    
     public static Scanner sc=new Scanner(System.in);
     
     public static void main(String[] args) {
-        
+        //Menu del programa
         System.out.println("Bienvenido al programa de gestion de bibliotecas.");
         System.out.println("Escribe el nombre de la biblioteca");
         String nombreBiblioteca=sc.nextLine();
@@ -24,7 +23,7 @@ public class Main {
         int opcion=1;
         int opcionGestor;
         System.out.println("Bienvenido al gestor de la bilioteca "+biblioteca.getNombreBiblioteca());
-        
+        //bucle para poder realizar acciones hasta que el usuario desee
         while (opcion!=0){
             System.out.println("El programa se divide en dos gestores, el de libros y el de personal");
             System.out.println("Pulsa 1 si deseas acceder al gestor de libros");
@@ -32,6 +31,7 @@ public class Main {
             System.out.println("Pulsa 0 para salir del programa");
             opcion=sc.nextInt();
             sc.nextLine();
+            //comprobacion de error
             while (opcion>2 || opcion<0){
                 System.out.println("ERROR: esa opcion no existe.");
                 System.out.println("Pulsa 1 si deseas acceder al gestor de libros");
@@ -41,6 +41,7 @@ public class Main {
                 sc.nextLine();
             }
             opcionGestor=0;
+            //bucle donde transcurren las opciones del gestor de libros
             while (opcion==1 && opcionGestor!=7){
                 System.out.println("Que desea hacer?");
                 System.out.println("Pulsa 1 para añadir un libro");
@@ -64,6 +65,10 @@ public class Main {
 
                     case 3:
                     int posicion=Libro.buscarLibroISBN(biblioteca.getListaLibros());
+                    /* interpreta el valor que se devuelve de la funcion, siendo este
+                    la posicion de la lista en la que se encuentra el Libro o siendo -1
+                    si no se encuentra en ella
+                    */
                     if (posicion==-1){
                         System.out.println("No tenemos ningun libro con esa ISBN");
                     }
@@ -96,6 +101,7 @@ public class Main {
                 System.out.println("Pulsa enter para continuar");
                 sc.nextLine();
             }
+            //bucle donde transcurren las opciones del gestor de personas
             while (opcion==2 && opcionGestor!=3){
                 System.out.println("Que desea hacer?");
                 System.out.println("Pulsa 1 para añadir una persona al sistema");
@@ -119,7 +125,6 @@ public class Main {
                     default:
                     System.out.println("ERROR: Este comando no existe");
                     System.out.println("Inserta un comando que exista");
-                
                 }
                 System.out.println("Pulsa enter para continuar");
                 sc.nextLine();

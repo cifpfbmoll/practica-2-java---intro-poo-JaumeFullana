@@ -14,12 +14,13 @@ import java.util.ArrayList;
 public class Persona {
     
     public static Scanner sc=new Scanner(System.in);
+    //Atributos de Persona
     private String nombre;
     private String apellido1;
     private String apellido2;
     private String NIF;
     private String contrasena;
-
+    //Cosntructores de Persona(Vacio, con todos los atributos y constructor copia)
     public Persona() {
     }
 
@@ -38,7 +39,7 @@ public class Persona {
         this.setNIF(p1.getNIF());
         this.setContrasena(p1.getContrasena());
     }
-
+    //setters y getters
     public String getNombre() {
         return nombre;
     }
@@ -76,6 +77,7 @@ public class Persona {
     }
 
     public void setContrasena(String contrasena) {
+        //Comprobacion de que la contraseña del usuario tenga almenos 8 caracteres
         while (contrasena.length()<8){
         System.out.println("La contraseña tiene que ser de 8 caracteres minimo");
         System.out.println("Inserta una nueva contaseña");
@@ -83,12 +85,12 @@ public class Persona {
         }
         this.contrasena = contrasena;
     }
-
+    //modulo para imprimir los valores de un objeto Persona
     @Override
     public String toString() {
         return "Persona{" + "sc=" + sc + ", nombre=" + nombre + ", apellido1=" + apellido1 + ", apellido2=" + apellido2 + ", NIF=" + NIF + ", contrasena=" + contrasena + '}';
     }
-    
+    //modulo que crea y añade valores a un objeto Persona y lo guarda dentro de una lista que se pasa por parametro
     public static void añadirPersona (ArrayList <Persona> listaPersonal){
         System.out.println("Escribe el nombre de la persona:"); 
         String nombre=sc.nextLine();
@@ -103,7 +105,9 @@ public class Persona {
         Persona p1=new Persona(nombre, apellido1, apellido2, NIF, contrasena);
         listaPersonal.add(p1);
     }
-    
+    /*modulo que busca una Persona por su NIF en la lista listaPersonal de la biblioteca,
+     que se pasa por parametro, y si lo encuentra lo elimina de la lista
+    */
     public static void eliminarPersona(ArrayList <Persona> listaPersonal){
         System.out.println("Escribe el NIF de la persona que quieres eliminar del sistema");
         String NIF=sc.nextLine();
@@ -117,10 +121,5 @@ public class Persona {
         if (!encontrado){
             System.out.println("No existe ninguna persona con ese NIF en el sistema");
         }
-    }
-    
-    
-    
-    
-    
+    }    
 }
