@@ -21,9 +21,10 @@ public class Biblioteca {
     //Constructor vacio de biblioteca
     public Biblioteca() {
     }
-    /*Constructor con todos los atributos(solo se piede el nombre ya que este programa
-    es para gestionar 1 sola biblioteca, por tanto solo haran falta una lista de libros
-    i una lista de personal para todo el programa)*/
+    /** Constructor con todos los atributos(solo se pide el nombre ya que este programa
+     * es para gestionar 1 sola biblioteca, por tanto solo haran falta una lista de libros
+     * i una lista de personal para todo el programa).
+     */
     public Biblioteca(String nombreBiblioteca) {
         this.setNombreBiblioteca(nombreBiblioteca);
     }
@@ -50,14 +51,19 @@ public class Biblioteca {
     public ArrayList<Persona> getListaPersonal() {
         return listaPersonal;
     }
-    //Modulo de instancia que imprime todo los Libros de la lista listaLibros
+    /**
+     * Metodo de instancia que imprime todo los Libros de la lista listaLibros.
+     */
     public void mostrarLibros(){
         
         for (int i=0;i<listaLibros.size();i++){
             System.out.println(listaLibros.get(i).toString());
         }
     }
-    //Modulo de instancia que imrpime todos los Libros de la lista listaLibros que esten disponibles
+    /**
+     * Metodo de instancia que imrpime todos los Libros de la lista listaLibros 
+     * que esten disponibles.
+     */
     public void mostrarLibrosDisponibles(){
         
         for (int i=0;i<listaLibros.size();i++){

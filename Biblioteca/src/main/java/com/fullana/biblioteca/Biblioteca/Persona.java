@@ -85,12 +85,16 @@ public class Persona {
         }
         this.contrasena = contrasena;
     }
-    //modulo para imprimir los valores de un objeto Persona
+    //metod para imprimir los valores de un objeto Persona
     @Override
     public String toString() {
         return "Persona{" + "sc=" + sc + ", nombre=" + nombre + ", apellido1=" + apellido1 + ", apellido2=" + apellido2 + ", NIF=" + NIF + ", contrasena=" + contrasena + '}';
     }
-    //modulo que crea y añade valores a un objeto Persona y lo guarda dentro de una lista que se pasa por parametro
+    /** Metodo que crea y añade valores a un objeto Persona y lo guarda dentro
+     * de una lista que se pasa por parametro. 
+     * 
+     * @param listaPersonal Arraylist donde se guardan los libros de la biblioteca
+     */
     public static void añadirPersona (ArrayList <Persona> listaPersonal){
         System.out.println("Escribe el nombre de la persona:"); 
         String nombre=sc.nextLine();
@@ -105,9 +109,12 @@ public class Persona {
         Persona p1=new Persona(nombre, apellido1, apellido2, NIF, contrasena);
         listaPersonal.add(p1);
     }
-    /*modulo que busca una Persona por su NIF en la lista listaPersonal de la biblioteca,
-     que se pasa por parametro, y si lo encuentra lo elimina de la lista
-    */
+    /**
+     * Metodo que busca una Persona por su NIF en la lista listaPersonal de la biblioteca,
+     * que se pasa por parametro, y si lo encuentra lo elimina de la lista.
+     * 
+     * @param listaPersonal Arraylist donde se guardan los libros de la biblioteca
+     */
     public static void eliminarPersona(ArrayList <Persona> listaPersonal){
         System.out.println("Escribe el NIF de la persona que quieres eliminar del sistema");
         String NIF=sc.nextLine();

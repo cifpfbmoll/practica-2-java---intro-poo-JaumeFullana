@@ -13,7 +13,10 @@ import java.util.Scanner;
 public class Main {
     
     public static Scanner sc=new Scanner(System.in);
-    
+    /**
+     * metodo main del programa, en el se incluyen bucles y switch que llaman a los diferentes modulos de las 
+     * diferentes clases del programa, ademas de la creacion de la biblioteca en el principio del programa.
+     */
     public static void main(String[] args) {
         //Menu del programa
         System.out.println("Bienvenido al programa de gestion de bibliotecas.");
@@ -65,10 +68,10 @@ public class Main {
 
                     case 3:
                     int posicion=Libro.buscarLibroISBN(biblioteca.getListaLibros());
-                    /* interpreta el valor que se devuelve de la funcion, siendo este
-                    la posicion de la lista en la que se encuentra el Libro o siendo -1
-                    si no se encuentra en ella
-                    */
+                    /** interpreta el valor que se devuelve del metodo, siendo este
+                     * la posicion de la lista en la que se encuentra el Libro o siendo -1
+                     * si no se encuentra en ella.
+                     */
                     if (posicion==-1){
                         System.out.println("No tenemos ningun libro con esa ISBN");
                     }

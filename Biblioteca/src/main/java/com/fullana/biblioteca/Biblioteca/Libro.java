@@ -14,15 +14,19 @@ import java.util.Scanner;
 public class Libro {
     
     public static Scanner sc=new Scanner(System.in);
-    //Atributos de Libro
+    //contador de los diferetes titulos que se guardan en la biblioteeca
     private static int contadorLibros;
+    //Atributos de Libro
     private String ISBN;
     private String titulo;
     private String autor;
     private String editorial;
     private int numeroCopias;
     private int copiasDisponibles;
-    //Constructores de Libro(vacio, con todos los atributos y el constructor copia)
+    /**
+     * Constructores de Libro(vacio, con todos los atributos y el constructor copia) 
+     * en cada uno se suma 1 al contador de libros, ya que se añade un libro a la biblioteca.
+     */
     public Libro() {
         contadorLibros++;
     }
@@ -101,12 +105,17 @@ public class Libro {
     public void setCopiasDisponibles(int copiasDisponibles) {
         this.copiasDisponibles = copiasDisponibles;
     }
-    //modulo para imprimir los valores de un objeto Libro
+    //metodo para imprimir los valores de un objeto Libro
     @Override
     public String toString() {
         return "Libro{" + "ISBN=" + ISBN + ", titulo=" + titulo + ", autor=" + autor + ", editorial=" + editorial + ", numeroCopias=" + numeroCopias + ", copiasDisponibles=" + copiasDisponibles + '}';
     }
-    //modulo que crea y añade valores a un objeto Libro y lo guarda dentro de una lista que se pasa por parametro
+    /** 
+     * Metodo que crea y añade valores a un objeto Libro y lo guarda dentro de la lista 
+     * listaLibros que se pasa por parametro.
+     * 
+     * @param listaLibros Arraylist donde se guardan los libros de la biblioteca
+     */
     public static void anadirLibro(ArrayList <Libro> listaLibros){
         Libro lbr=new Libro();
         System.out.println("Inserta la ISBN del libro");
@@ -133,9 +142,13 @@ public class Libro {
         sc.nextLine();
         listaLibros.add(lbr);
     }
-    /*modulo que busca un Libro por su ISBN en la lista listaLibros de la biblioteca,
-     que se pasa por parametro, y si lo encuentra lo elimina de la lista
-    */
+    /**
+     * Metodo que busca un Libro por su ISBN en la lista listaLibros de la biblioteca,
+     * que se pasa por parametro, y si lo encuentra, y no hay ninguna copia reservada,
+     * lo elimina de la lista (Si no lo encuentra lo indica).
+     * 
+     * @param listaLibros Arraylist donde se guardan los libros de la biblioteca
+     */
     public static void eliminarLibro (ArrayList <Libro> listaLibros){
         
         boolean encontrado=false;
@@ -159,9 +172,13 @@ public class Libro {
             System.out.println("No hay ningun libro con esa ISBN");
         }    
     }
-    /*Busca un Libro por su ISBN en la lista que se pasa por parametro i devuelve
-    su posicion en la lista, si no se encuentra en ella devuelve -1
-    */
+    /** 
+     * Metodo que busca un Libro por su ISBN en la lista que se pasa por parametro
+     * y devuelve su posicion en la lista, si no se encuentra en ella devuelve -1.
+     *
+     * @param listaLibros Arraylist donde se guardan los libros de la biblioteca
+     * @return posicion numero que indica la posicion del libro en listaLibros, devuelve -1 si no se encuentra alli
+     */
     public static int buscarLibroISBN (ArrayList <Libro> listaLibros){
         System.out.println("Escribe la ISBN del libro");
         String isbn=sc.nextLine();
@@ -174,8 +191,12 @@ public class Libro {
         }
         return posicion;
     }
-    /* Busca un Libro por su titulo(solo hace falta que la string este en el titulo,
-    no que sea el titulo entero) en una lista pasada por parametro y lo imprime por pantalla */
+    /** Metodo que busca un Libro por su titulo (solo hace falta que la string este en el titulo,
+     * no que sea el titulo entero) en una lista pasada por parametro y lo imprime por pantalla,
+     * si no encuentra el libro tambien lo especifica.
+     *
+     * @param listaLibros Arraylist donde se guardan los libros de la biblioteca
+     */
     public static void buscarLibroTitulo(ArrayList <Libro> listaLibros){
         boolean encontrado=false;
         System.out.println("Escribe el titulo o una parte del titulo del libro que quieres buscar");
