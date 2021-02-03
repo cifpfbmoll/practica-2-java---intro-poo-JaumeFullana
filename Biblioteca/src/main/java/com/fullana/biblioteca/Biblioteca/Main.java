@@ -62,7 +62,9 @@ public class Main {
                     System.out.println("Pulsa 5 para mostrar todos los libros");
                     System.out.println("Pulsa 6 para mostrar todos los libros disponibles en este momento");
                     System.out.println("Pulsa 7 para reservar un libro para un usuario de la biblioteca");
-                    System.out.println("Pulsa 8 volver al selector de gestores");
+                    System.out.println("Pulsa 8 para devolver un libro de un usuario a la biblioteca");
+                    System.out.println("Pulsa 9 para ver los libros reservados de un usuario de la biblioteca");
+                    System.out.println("Pulsa 0 volver al selector de gestores");
                     opcionGestor=sc.nextInt();
                     sc.nextLine();
 
@@ -118,8 +120,42 @@ public class Main {
                             System.out.println("No existe ningun usuario de la biblioteca que tenga ese NIF"); 
                         }
                         break;
-
+                        
                         case 8:
+                        System.out.println("Inserta el NIF del usuario para el que va a devolver el libro");
+                        NIF=sc.nextLine();
+                        i=0;
+                        encontrado=false;
+                        while (i<biblioteca.getListaUsuario().size() && !encontrado){
+                            if (biblioteca.getListaUsuario().get(i).getNIF().equals(NIF)){
+                                biblioteca.getListaUsuario().get(i).devolverLibro(biblioteca.getListaLibros());
+                                encontrado=true;
+                            } 
+                            i++;
+                        }
+                        if(!encontrado){
+                            System.out.println("No existe ningun usuario de la biblioteca que tenga ese NIF"); 
+                        }
+                        break;
+
+                        case 9:
+                        System.out.println("Inserta el NIF del usuario");
+                        NIF=sc.nextLine();
+                        i=0;
+                        encontrado=false;
+                        while (i<biblioteca.getListaUsuario().size() && !encontrado){
+                            if (biblioteca.getListaUsuario().get(i).getNIF().equals(NIF)){
+                                biblioteca.getListaUsuario().get(i).mostrarLibrosReservados();
+                                encontrado=true;
+                            } 
+                            i++;
+                        }    
+                        if(!encontrado){
+                            System.out.println("No existe ningun usuario de la biblioteca que tenga ese NIF"); 
+                        }
+                        break;
+
+                        case 0:
                         System.out.println("Volvamos al selector de gestores entonces");
                         opcion=9;
                         break;
@@ -183,7 +219,9 @@ public class Main {
                 System.out.println("Pulsa 3 para mostrar todos los libros");
                 System.out.println("Pulsa 4 para mostrar todos los libros disponibles en este momento");
                 System.out.println("Pulsa 5 para reservar un libro");
-                System.out.println("Pulsa 6 para salir de la sesion");
+                System.out.println("Pulsa 6 para devolver un libro");
+                System.out.println("Pulsa 7 para que se muestren los libros que tienes reservados");
+                System.out.println("Pulsa 8 para salir de la sesion");
                 opcionGestor=sc.nextInt();
                 sc.nextLine();
 
@@ -221,14 +259,38 @@ public class Main {
                     while (i<biblioteca.getListaUsuario().size() && !encontrado){
                         if (biblioteca.getListaUsuario().get(i).getNIF().equals(NIFUsuarioActivo)){
                             biblioteca.getListaUsuario().get(i).reservarLibro(biblioteca.getListaLibros());
-                            System.out.println(biblioteca.getListaUsuario().get(i).toString());
                             encontrado=true;
                         } 
                         i++;
                     }
                     break;
- 
+                    
                     case 6:
+                    i=0;
+                    encontrado=false;
+                    while (i<biblioteca.getListaUsuario().size() && !encontrado){
+                        if (biblioteca.getListaUsuario().get(i).getNIF().equals(NIFUsuarioActivo)){
+                            biblioteca.getListaUsuario().get(i).devolverLibro(biblioteca.getListaLibros());
+                            encontrado=true;
+                        } 
+                        i++;
+                    }    
+                    break;
+                    
+                    case 7:
+                    i=0;
+                    encontrado=false;
+                    while (i<biblioteca.getListaUsuario().size() && !encontrado){
+                        if (biblioteca.getListaUsuario().get(i).getNIF().equals(NIFUsuarioActivo)){
+                            biblioteca.getListaUsuario().get(i).mostrarLibrosReservados();
+                            encontrado=true;
+                        } 
+                        i++;
+                    }    
+                    
+                    break;
+ 
+                    case 8:
                     System.out.println("Hasta la proxima!");
                     privilegios=9;
                     break;
@@ -247,6 +309,7 @@ public class Main {
             System.out.println("Inserta 0 para salir del programa");
             opcionSesion=sc.nextInt();
             sc.nextLine();
+            //inicio de sesion de administrador
             if (opcionSesion==1){
                 System.out.println("Inserta tu NIF");
                 String NIF=sc.nextLine();
@@ -278,7 +341,8 @@ public class Main {
                 if (!encontrado){
                     System.out.println("No hay ningun usuario del personal con ese NIF");
                 }
-            }   
+            } 
+            //inicio de sesion de usuario
             else if(opcionSesion==2){
                 System.out.println("Inserta tu NIF");
                 String NIF=sc.nextLine();

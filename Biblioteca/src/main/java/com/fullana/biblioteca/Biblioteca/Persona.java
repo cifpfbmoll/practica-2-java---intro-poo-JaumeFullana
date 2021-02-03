@@ -90,6 +90,7 @@ public class Persona {
     public String toString() {
         return "Persona{" + "sc=" + sc + ", nombre=" + nombre + ", apellido1=" + apellido1 + ", apellido2=" + apellido2 + ", NIF=" + NIF + ", contrasena=" + contrasena + '}';
     }
+    
     /** Metodo que crea y añade valores a un objeto Persona y lo guarda dentro
      * de una lista que se pasa por parametro. 
      * 

@@ -41,15 +41,14 @@ public class Libro {
         this.setCopiasDisponibles(copiasDisponibles, numeroCopias);
     }
     
-        public Libro(Libro lbr) {
+    public Libro(Libro lbr) {
         contadorLibros++;
         this.setISBN(lbr.getISBN());
         this.setTitulo(lbr.getTitulo());
         this.setAutor(lbr.getAutor());
         this.setEditorial(lbr.getEditorial());
-        this.setNumeroCopias(lbr.getNumeroCopias());
-        this.setCopiasDisponibles(lbr.getCopiasDisponibles(), lbr.getNumeroCopias());
     }
+    
     //Getters y setters
     public String getISBN() {
         return ISBN;
@@ -124,6 +123,11 @@ public class Libro {
     public String toString() {
         return "Libro{" + "ISBN=" + ISBN + ", titulo=" + titulo + ", autor=" + autor + ", editorial=" + editorial + ", numeroCopias=" + numeroCopias + ", copiasDisponibles=" + copiasDisponibles + '}';
     }
+    //metodo para imprimir valor de un objeto libro que se encuentra en la lista de reservas de un usuario
+    public String ReservasToString() {
+        return "Libro{" + "ISBN=" + ISBN + ", titulo=" + titulo + ", autor=" + autor + ", editorial=" + editorial + '}';
+    }
+    
     /** 
      * Metodo que crea y añade valores a un objeto Libro y lo guarda dentro de la lista 
      * listaLibros que se pasa por parametro.
