@@ -122,6 +122,7 @@ public class Persona {
         for (int i=0;i<listaPersonal.size();i++){
             if (listaPersonal.get(i).getNIF().equals(NIF)){
                 listaPersonal.remove(i);
+                System.out.println("El usuario ha sido eliminado");
                 encontrado=true;
             }
         }

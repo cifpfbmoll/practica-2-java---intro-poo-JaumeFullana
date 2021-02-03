@@ -18,6 +18,7 @@ public class Biblioteca {
     private String nombreBiblioteca;
     private ArrayList <Libro> listaLibros=new ArrayList <Libro>();
     private ArrayList <Persona> listaPersonal=new ArrayList <Persona>();
+    private ArrayList <Usuario> listaUsuario=new ArrayList <Usuario>();
     //Constructor vacio de biblioteca
     public Biblioteca() {
     }
@@ -51,6 +52,16 @@ public class Biblioteca {
     public ArrayList<Persona> getListaPersonal() {
         return listaPersonal;
     }
+
+    public ArrayList<Usuario> getListaUsuario() {
+        return listaUsuario;
+    }
+
+    public void setListaUsuario(ArrayList<Usuario> listaUsuario) {
+        this.listaUsuario = listaUsuario;
+    }
+    
+   
     /**
      * Metodo de instancia que imprime todo los Libros de la lista listaLibros.
      */

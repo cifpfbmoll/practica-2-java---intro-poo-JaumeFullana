@@ -38,7 +38,7 @@ public class Libro {
         this.setAutor(autor);
         this.setEditorial(editorial);
         this.setNumeroCopias(numeroCopias);
-        this.setCopiasDisponibles(copiasDisponibles);
+        this.setCopiasDisponibles(copiasDisponibles, numeroCopias);
     }
     
         public Libro(Libro lbr) {
@@ -48,7 +48,7 @@ public class Libro {
         this.setAutor(lbr.getAutor());
         this.setEditorial(lbr.getEditorial());
         this.setNumeroCopias(lbr.getNumeroCopias());
-        this.setCopiasDisponibles(lbr.getCopiasDisponibles());
+        this.setCopiasDisponibles(lbr.getCopiasDisponibles(), lbr.getNumeroCopias());
     }
     //Getters y setters
     public String getISBN() {
@@ -102,7 +102,21 @@ public class Libro {
         return copiasDisponibles;
     }
 
-    public void setCopiasDisponibles(int copiasDisponibles) {
+    public void setCopiasDisponibles(int copiasDisponibles, int numeroCopias) {
+            //Control para que no haya mas copias disponibles de las que tenemos ni el numero de copias disponibles sea negativo
+        while(numeroCopias<copiasDisponibles || copiasDisponibles<0){
+            if (numeroCopias<copiasDisponibles){
+                System.out.println("Es imposible que haya disponibles mas copias de las que tenemos");
+                System.out.println("Inserte el numero correcto, porfavor");
+                copiasDisponibles=sc.nextInt();
+            }
+            else if (copiasDisponibles<0){
+            System.out.println("No puedes insertar un numero de copias disponibles negativo!");
+            System.out.println("inserta el numero correcto");
+            copiasDisponibles=sc.nextInt();
+            }
+        }
+        
         this.copiasDisponibles = copiasDisponibles;
     }
     //metodo para imprimir los valores de un objeto Libro
@@ -128,18 +142,12 @@ public class Libro {
         lbr.setEditorial(sc.nextLine());
         System.out.println("Inserta el numero de copias del libro");
         int numeroCopias=sc.nextInt();
-        lbr.setNumeroCopias(numeroCopias);
         sc.nextLine();
+        lbr.setNumeroCopias(numeroCopias);
         System.out.println("Inserta el numero de copias disponibles del libro");
         int numeroCopiasDisponibles=sc.nextInt();
-        //Control para que no haya mas copias disponibles de las que tenemos
-        while(numeroCopias<numeroCopiasDisponibles){
-            System.out.println("Es imposible que haya disponibles mas copias de las que tenemos");
-            System.out.println("Inserte el numero correcto, porfavor");
-            numeroCopiasDisponibles=sc.nextInt();
-        }
-        lbr.setCopiasDisponibles(numeroCopiasDisponibles);
         sc.nextLine();
+        lbr.setCopiasDisponibles(numeroCopiasDisponibles,numeroCopias);
         listaLibros.add(lbr);
     }
     /**
