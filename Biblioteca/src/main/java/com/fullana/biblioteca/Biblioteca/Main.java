@@ -29,6 +29,7 @@ public class Main {
         System.out.println("Bienvenido "+biblioteca.getListaPersonal().get(0).getNombre()+"!");
         int privilegios=1;
         int opcionSesion;
+        String [] listaInicioSesion;
         String NIFUsuarioActivo="";
         //bucle para poder realizar acciones hasta que se desee
         while (privilegios!=0){
@@ -51,37 +52,9 @@ public class Main {
             } 
             //inicio de sesion de usuario
             else if(opcionSesion==2){
-                System.out.println("Inserta tu NIF");
-                String NIF=sc.nextLine();
-                System.out.println("Inserta tu contraseña");
-                String contrasena=sc.nextLine();
-                int i=0;
-                boolean encontrado=false;
-                while (i<biblioteca.getListaUsuario().size() && !encontrado){
-                    if(biblioteca.getListaUsuario().get(i).getNIF().equals(NIF)){
-                        encontrado=true;
-                        boolean salir=false;
-                        while (!(biblioteca.getListaUsuario().get(i).getContrasena().equals(contrasena)) && !salir){
-                            System.out.println("La contraseña es incorrecta, inserta la contraseña correcta.");
-                            System.out.println("Si quieres salir del inicio de sesion apriete enter");
-                            contrasena=sc.nextLine();
-                            if (contrasena.equals("")){
-                                salir=true;
-                                privilegios=9;
-                            }
-                            
-                        }
-                        if(biblioteca.getListaUsuario().get(i).getNIF().equals(NIF) && biblioteca.getListaUsuario().get(i).getContrasena().equals(contrasena)){
-                            privilegios=2;
-                            System.out.println("Bienvenido "+biblioteca.getListaUsuario().get(i).getNombre());
-                            NIFUsuarioActivo=biblioteca.getListaUsuario().get(i).getNIF();
-                        }
-                    }
-                    i++;
-                }
-                if (!encontrado){
-                    System.out.println("No hay ningun usuario con ese NIF");
-                }
+                listaInicioSesion = menuInicioSesionUsuario(biblioteca, privilegios, NIFUsuarioActivo);
+                NIFUsuarioActivo=listaInicioSesion[1];
+                privilegios=Integer.parseInt(listaInicioSesion[0]);
             } 
             else if (opcionSesion==0){
                 System.out.println("ADIOS!");
@@ -92,7 +65,57 @@ public class Main {
                 privilegios=9;
             }
         }
-    }    
+    }
+    /**
+     * Metodo de un menu de inicio de sesion para usuarios normales, recibe por parametros un int privilegios para despues ser devuelto
+     * con el valor correspondiente, un String NIFUsuarioActivo que despues sera devuelto tambien con el numero del usuario que haya logeado y
+     * un objeto Biblioteca del cual se usa el atributo listaUsuarios, que es un ArrayList de Usuarios, para ver si existe 
+     * un Usuario con ese NIF y luego comprobar si la contraseña introducida es la correcta(una vez comprobado,
+     * y si es correcto, devuelve 1, si es incorrecto se sigue ejecutando hasta que el usuario quiere, cuando no quiere, si sigue
+     * siendo incorrecto, devuelve 9).
+     * 
+     * @param biblioteca Objeto de la clase Biblioteca.
+     * @param privilegios int que hace referencia a que puede hacer el usuario conectado(administrador o usuario normal).
+     * @param NIFUsuarioActivo String que es el NIF del usuario que esta en la sesion actualmente.
+     * @return listaInicioSesion Array creada para poder almacenar y devolver el int privilegios y el String NIFUsuarioActivo.
+     */
+    public static String[] menuInicioSesionUsuario(Biblioteca biblioteca, int privilegios, String NIFUsuarioActivo){
+        System.out.println("Inserta tu NIF");
+        String NIF=sc.nextLine();
+        System.out.println("Inserta tu contraseña");
+        String contrasena=sc.nextLine();
+        int i=0;
+        boolean encontrado=false;
+        while (i<biblioteca.getListaUsuario().size() && !encontrado){
+            if(biblioteca.getListaUsuario().get(i).getNIF().equals(NIF)){
+                encontrado=true;
+                boolean salir=false;
+                while (!(biblioteca.getListaUsuario().get(i).getContrasena().equals(contrasena)) && !salir){
+                    System.out.println("La contraseña es incorrecta, inserta la contraseña correcta.");
+                    System.out.println("Si quieres salir del inicio de sesion apriete enter");
+                    contrasena=sc.nextLine();
+                    if (contrasena.equals("")){
+                        salir=true;
+                        privilegios=9;
+                    }
+
+                }
+                if(biblioteca.getListaUsuario().get(i).getNIF().equals(NIF) && biblioteca.getListaUsuario().get(i).getContrasena().equals(contrasena)){
+                    privilegios=2;
+                    System.out.println("Bienvenido "+biblioteca.getListaUsuario().get(i).getNombre());
+                    NIFUsuarioActivo=biblioteca.getListaUsuario().get(i).getNIF();
+                }
+            }
+            i++;
+        }
+        if (!encontrado){
+            System.out.println("No hay ningun usuario con ese NIF");
+        }
+        String privilegiosString=Integer.toString(privilegios);
+        String[] listaInicioSesion={privilegiosString,NIFUsuarioActivo};
+        return listaInicioSesion;
+    }
+    
     /**
      * Metodo de un menu de inicio de sesion para administradores, recibe por parametros un int privilegios para despues ser devuelto y
      * un objeto Biblioteca del cual se usa el atributo listaPersonal, que es un ArrayList de personas, para ver si existe 
