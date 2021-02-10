@@ -32,6 +32,7 @@ public class Main {
             else if (privilegios==2){
                 privilegios = menuUsuario(privilegios, biblioteca, NIFUsuarioActivo);
             }
+            //Opciones de inicio de sesion o para salir del programa
             opcionSesion = opcionesInicioSesion();
             //inicio de sesion de administrador
             if (opcionSesion==1){
@@ -61,7 +62,6 @@ public class Main {
      */
     public static int opcionesInicioSesion() {
         int opcionSesion;
-        //Opciones de inicio de sesion o para salir del programa
         System.out.println("MENU DE INICIO DE SESION");
         System.out.println("Inserta 1 para inciar sesion si eres parte del personal");
         System.out.println("Inserta 2 para iniciar sesion si eres un usuario de la biblioteca");
