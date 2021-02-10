@@ -18,15 +18,8 @@ public class Main {
      * diferentes clases del programa, ademas de la creacion de la biblioteca en el principio del programa.
      */
     public static void main(String[] args) {
-        //Menu del programa
-        System.out.println("Bienvenido al programa de gestion de bibliotecas.");
-        System.out.println("Escribe el nombre de la biblioteca");
-        String nombreBiblioteca=sc.nextLine();
-        Biblioteca biblioteca=new Biblioteca(nombreBiblioteca);
-        System.out.println("Bienvenido al gestor de la bilioteca "+biblioteca.getNombreBiblioteca());
-        System.out.println("Ahora pasemos a crear un usuario para gestionar la biblioteca");
-        Persona.añadirPersona(biblioteca.getListaPersonal());
-        System.out.println("Bienvenido "+biblioteca.getListaPersonal().get(0).getNombre()+"!");
+        Biblioteca biblioteca=crearBiblioteca();
+        crearPrimerAdministrador(biblioteca);
         int privilegios=1;
         int opcionSesion;
         String [] listaInicioSesion;
@@ -39,13 +32,7 @@ public class Main {
             else if (privilegios==2){
                 privilegios = menuUsuario(privilegios, biblioteca, NIFUsuarioActivo);
             }
-            //Opciones de inicio de sesion o para salir del programa
-            System.out.println("MENU DE INICIO DE SESION");
-            System.out.println("Inserta 1 para inciar sesion si eres parte del personal");
-            System.out.println("Inserta 2 para iniciar sesion si eres un usuario de la biblioteca");
-            System.out.println("Inserta 0 para salir del programa");
-            opcionSesion=sc.nextInt();
-            sc.nextLine();
+            opcionSesion = opcionesInicioSesion();
             //inicio de sesion de administrador
             if (opcionSesion==1){
                 privilegios = menuInicioSesionAdministrador(biblioteca, privilegios);
@@ -65,6 +52,51 @@ public class Main {
                 privilegios=9;
             }
         }
+    }
+    /**
+     * Metodo que pregunta la opcion de inicio de sesion que desea realizar el 
+     * usuario, esa opcion es un int que es devuelto por el metodo.
+     * 
+     * @return opcionSesion int que indica la opcion que ha elegido el usuario para iniciar sesion
+     */
+    public static int opcionesInicioSesion() {
+        int opcionSesion;
+        //Opciones de inicio de sesion o para salir del programa
+        System.out.println("MENU DE INICIO DE SESION");
+        System.out.println("Inserta 1 para inciar sesion si eres parte del personal");
+        System.out.println("Inserta 2 para iniciar sesion si eres un usuario de la biblioteca");
+        System.out.println("Inserta 0 para salir del programa");
+        opcionSesion=sc.nextInt();
+        sc.nextLine();
+        return opcionSesion;
+    }
+    /**
+     * Metodo que se ejecuta siempre cuando se inicia el programa justo despues de
+     * crearse la biblioteca, sirve para crear el primer administrador de la biblioteca
+     * (Accion que es llevada a cabo a traves de otro metodo el cual es llamado en este metodo)
+     * 
+     * @param biblioteca Objeto de la clase biblioteca del cual se coge el atributo ArrayList listaPersonal 
+     * para guardar al primer administrador(Persona) de la biblioteca.
+     */
+    public static void crearPrimerAdministrador(Biblioteca biblioteca) {
+        System.out.println("Bienvenido al gestor de la bilioteca "+biblioteca.getNombreBiblioteca());
+        System.out.println("Ahora pasemos a crear un usuario para gestionar la biblioteca");
+        Persona.añadirPersona(biblioteca.getListaPersonal());
+        System.out.println("Bienvenido "+biblioteca.getListaPersonal().get(0).getNombre()+"!");
+    }
+    /**
+     * Metodo que sirve para crear la biblioteca, pide su nombre y lo pasa por parametro
+     * al constructor de la clase Biblioteca, devuelve el objeto Biblioteca creado.
+     * 
+     * @return biblioteca Objeto de la clase Biblioteca
+     */
+    public static Biblioteca crearBiblioteca() {
+        //Menu del programa
+        System.out.println("Bienvenido al programa de gestion de bibliotecas.");
+        System.out.println("Escribe el nombre de la biblioteca");
+        String nombreBiblioteca=sc.nextLine();
+        Biblioteca biblioteca=new Biblioteca(nombreBiblioteca);
+        return biblioteca;
     }
     /**
      * Metodo de un menu de inicio de sesion para usuarios normales, recibe por parametros un int privilegios para despues ser devuelto
